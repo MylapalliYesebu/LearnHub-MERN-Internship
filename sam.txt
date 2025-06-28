@@ -1,0 +1,80 @@
+LearnHub/
+└── backend/
+    ├── config/
+    │   └── db.js
+    │
+    ├── controllers/
+    │   ├── authController.js
+    │   ├── userController.js
+    │   ├── courseController.js
+    │   └── studentController.js
+    │
+    ├── middleware/
+    │   └── authMiddleware.js
+    │
+    ├── models/
+    │   ├── User.js
+    │   └── Course.js
+    │
+    ├──node_modules/       # Node.js dependencies
+    │
+    ├── routes/
+    │   ├── authRoutes.js
+    │   ├── userRoutes.js
+    │   ├── courseRoutes.js
+    │   └── studentRoutes.js
+    │
+    ├── .env
+    ├── .gitignore
+    ├── index.js
+    ├── package-lock.json
+    └── package.json
+└──frontend/
+    ├── node_modules/ # so mant modules
+    ├── public/
+    │   ├── vite.svg
+    ├── src/
+        ├── assets/             # Logos, icons (optional)
+            └── bg.jpg  # background image for home,login, and register pages
+            └── react.svg       
+        ├── components/        # Shared UI components (Navbar etc.)
+        │   └── Navbar.jsx
+        │   └── AdminNavbar.jsx
+        │   └── TeacherNavbar.jsx
+        │   └── StudentNavbar.jsx
+        │
+        ├── context/           # Global auth state
+        │   └── AuthContext.jsx
+        │
+        ├── pages/             # All route-based page components
+        │   ├── AddCourse.jsx  
+        │   ├── AdminCourses.jsx  
+        │   ├── AdminDashboard.jsx 
+        │   ├── AdminUsers.jsx
+        │   ├── CourseDetails.jsx
+        │   ├── EditCourse.jsx
+        │   ├── EnrolledCourses.jsx
+        │   ├── Home.jsx
+        │   ├── LearnCourse.jsx
+        │   ├── Login.jsx
+        │   ├── Register.jsx
+        │   ├── StudentCourses.jsx
+        │   ├── StudentDashboard.jsx
+        │   └── TeacherCourses.jsx
+        │
+        ├── routes/
+        │   └── PrivateRoute.jsx  # Protected route component
+        ├── services/          # Axios setup
+        │   └── axios.js
+        │
+        ├── App.jsx            # Routes + PrivateRoute logic
+        ├── main.jsx           # React root entry
+        ├── App.css            # Global styles
+        ├── index.css          # Styling
+    ├── .env
+    ├── .gitignore
+    ├── eslint.config.js
+    ├── index.html
+    ├── package-lock.json
+    └── package.json
+    └── vite.config.js       # Vite configuration
