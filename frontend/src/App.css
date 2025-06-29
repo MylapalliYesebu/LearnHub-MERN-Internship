@@ -1,0 +1,7 @@
+/* LearnCourse.css */
+.custom-modal-position {
+  position: absolute !important;
+  top:30% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}

@@ -1,10 +1,12 @@
-import { useEffect, useState, useRef, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../services/axios';
 import StudentNavbar from '../components/StudentNavbar';
 import { AuthContext } from '../context/AuthContext';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Modal, Button } from 'react-bootstrap';
+import '../App.css'; // Ensure you have the necessary styles
 
 const LearnCourse = () => {
   const { id } = useParams();
@@ -12,7 +14,7 @@ const LearnCourse = () => {
   const [completedSections, setCompletedSections] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
-  const certRef = useRef();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,30 +60,22 @@ const LearnCourse = () => {
   const isLink = (url) => url.startsWith('http://') || url.startsWith('https://');
 
   const handleDownloadCertificate = () => {
-    const certElement = certRef.current;
-    certElement.style.display = 'block';
+    const certElement = document.getElementById('certificate-download');
+    html2canvas(certElement, {
+      scale: 2,
+      useCORS: true,
+    }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('landscape', 'pt', 'a4');
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
 
-    setTimeout(async () => {
-      try {
-        const canvas = await html2canvas(certElement, {
-          scale: 2,
-          useCORS: true,
-        });
-
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('landscape', 'pt', 'a4');
-        const width = pdf.internal.pageSize.getWidth();
-        const height = pdf.internal.pageSize.getHeight();
-
-        pdf.addImage(imgData, 'PNG', 0, 0, width, height);
-        pdf.save(`Certificate_${course.C_title}.pdf`);
-      } catch (err) {
-        alert('❌ Failed to generate certificate.');
-        console.error(err);
-      } finally {
-        certElement.style.display = 'none';
-      }
-    }, 500);
+      pdf.addImage(imgData, 'PNG', 0, 0, width, height);
+      pdf.save(`Certificate_${course.C_title}.pdf`);
+    }).catch((err) => {
+      alert('❌ Failed to generate certificate.');
+      console.error(err);
+    });
   };
 
   if (loading) return <p className="text-center mt-10">Loading...</p>;
@@ -179,7 +173,7 @@ const LearnCourse = () => {
 
         <div className="text-center mt-6">
           <button
-            onClick={handleDownloadCertificate}
+            onClick={() => setShowModal(true)}
             disabled={!allDone}
             className={`px-6 py-2 rounded font-semibold text-white text-sm ${
               allDone
@@ -187,48 +181,49 @@ const LearnCourse = () => {
                 : 'bg-gray-400 cursor-not-allowed'
             }`}
           >
-            {allDone ? 'Download Certificate 🏆' : 'Complete Course to Unlock Certificate'}
+            {allDone ? '🎓 View Certificate' : 'Complete Course to Unlock Certificate'}
           </button>
         </div>
       </div>
 
-      {/* 🔒 Hidden Certificate Template for PDF */}
-      <div
-        ref={certRef}
-        style={{
-          position: 'absolute',
-          top: '-9999px',
-          left: '-9999px',
-          zIndex: -999,
-          width: '800px',
-          height: '565px',
-          padding: '40px',
-          fontFamily: 'serif',
-          background: '#fefefe',
-          textAlign: 'center',
-          border: '6px double #999',
-        }}
-      >
-        <h1 style={{ fontSize: '28px', fontWeight: 'bold', color: '#2b2b2b' }}>
-          🎓 Certificate of Completion
-        </h1>
-        <p style={{ marginTop: '40px', fontSize: '18px' }}>
-          This is to certify that
-        </p>
-        <h2 style={{ fontSize: '24px', margin: '12px 0', color: '#333' }}>{user?.name}</h2>
-        <p style={{ fontSize: '18px' }}>
-          has successfully completed the course:
-        </p>
-        <h2 style={{ fontSize: '22px', margin: '10px 0', color: '#1e3a8a' }}>
-          “{course.C_title}”
-        </h2>
-        <p style={{ fontSize: '16px', marginTop: '30px' }}>
-          Issued on: {new Date().toLocaleDateString()}
-        </p>
-        <p style={{ fontSize: '14px', marginTop: '60px', color: '#555' }}>
-          LearnHub — Your Center for Skill Enhancement
-        </p>
-      </div>
+      {/* Certificate Preview Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} dialogClassName="custom-modal-position" centered >
+        <Modal.Header closeButton>
+          {/* <Modal.Title>🎉 Completion Certificate</Modal.Title> */}
+        </Modal.Header>
+        <Modal.Body className="text-center">
+          {/* <div className="mb-3">Congratulations! You have completed the course. You can now download your certificate.</div> */}
+
+          {/* 🏆 Certificate to Preview + Download */}
+          <div
+            id="certificate-download"
+            style={{
+              margin: 'auto',
+              width: '800px',
+              height: '565px',
+              padding: '40px',
+              fontFamily: 'serif',
+              background: '#fefefe',
+              textAlign: 'center',
+              border: '6px double #999',
+            }}
+          >
+            <h1 style={{ fontSize: '28px', fontWeight: 'bold', color: '#2b2b2b' }}>🎓 Certificate of Completion</h1>
+            <p style={{ marginTop: '40px', fontSize: '18px' }}>This is to certify that</p>
+            <h2 style={{ fontSize: '24px', margin: '12px 0', color: '#333' }}>{user?.name}</h2>
+            <p style={{ fontSize: '18px' }}>has successfully completed the course:</p>
+            <h2 style={{ fontSize: '22px', margin: '10px 0', color: '#1e3a8a' }}>{course?.C_title}</h2>
+            <p style={{ fontSize: '16px', marginTop: '30px' }}>Issued on: {new Date().toLocaleDateString()}</p>
+            <p style={{ fontSize: '14px', marginTop: '60px', color: '#555' }}>LearnHub — Your Center for Skill Enhancement</p>
+          </div>
+
+          <Button onClick={handleDownloadCertificate}
+            className="mt-4 px-5 py-2 rounded bg-green-600 text-white font-semibold hover:bg-green-700 transition"
+          >
+            Download Your Certificate
+          </Button>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };
