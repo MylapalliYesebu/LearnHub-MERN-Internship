@@ -5,7 +5,7 @@ const sectionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  content: String, // could be video URL, text, etc.
+  content: String,
 });
 
 const courseSchema = new mongoose.Schema(
@@ -31,7 +31,7 @@ const courseSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    sections: [sectionSchema], // embedded array
+    sections: [sectionSchema],
     enrolled: [
       {
         type: mongoose.Schema.Types.ObjectId,

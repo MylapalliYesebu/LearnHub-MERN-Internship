@@ -4,7 +4,7 @@ import AdminNavbar from '../components/AdminNavbar';
 
 const AdminCourses = () => {
   const [courses, setCourses] = useState([]);
-  const [deleting, setDeleting] = useState(null); // course ID being deleted
+  const [deleting, setDeleting] = useState(null);
 
   const fetchCourses = async () => {
     try {

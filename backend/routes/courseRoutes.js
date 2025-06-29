@@ -11,19 +11,19 @@ const {
 
 const { protect, isTeacher } = require('../middleware/authMiddleware');
 
-// ✅ Create a new course (teacher only)
+// Create a new course (teacher only)
 router.post('/', protect, isTeacher, createCourse);
 
-// ✅ Get all courses (public)
+// Get all courses (public)
 router.get('/', getAllCourses);
 
-// ✅ Get single course by ID (public)
+// Get single course by ID (public)
 router.get('/:id', getCourseById);
 
-// ✅ Update a course (teacher only - their own)
+// Update a course (teacher only - their own)
 router.put('/:id', protect, isTeacher, updateCourse);
 
-// ✅ Delete a course (admin or the course creator - allowed in controller)
+// Delete a course (admin or the course creator - allowed in controller)
 router.delete('/:id', protect, deleteCourse);
 
 module.exports = router;

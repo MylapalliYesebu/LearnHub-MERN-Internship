@@ -1,6 +1,6 @@
 const Course = require('../models/Course');
 
-// ✅ Create a new course (Teacher)
+// Create a new course (Teacher)
 const createCourse = async (req, res) => {
   const { C_category, C_title, C_description, C_price, sections } = req.body;
 
@@ -20,7 +20,7 @@ const createCourse = async (req, res) => {
   }
 };
 
-// ✅ Get all courses
+// et all courses
 const getAllCourses = async (req, res) => {
   try {
     const courses = await Course.find().populate('C_educator', 'name email');
@@ -30,7 +30,7 @@ const getAllCourses = async (req, res) => {
   }
 };
 
-// ✅ Get single course by ID
+// Get single course by ID
 const getCourseById = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id).populate('C_educator', 'name email').populate('enrolled', 'name email');;
@@ -41,7 +41,7 @@ const getCourseById = async (req, res) => {
   }
 };
 
-// ✅ Delete a course
+// Delete a course
 const deleteCourse = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);
@@ -61,7 +61,7 @@ const deleteCourse = async (req, res) => {
   }
 };
 
-// ✅ Update a course (Teacher Only – Own Course)
+// Update a course (Teacher Only – Own Course)
 const updateCourse = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);

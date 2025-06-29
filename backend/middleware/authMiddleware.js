@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-// ✅ Protect routes (check token + attach user)
+// Protect routes (check token + attach user)
 const protect = async (req, res, next) => {
   let token;
 
@@ -26,7 +26,7 @@ const protect = async (req, res, next) => {
   }
 };
 
-// ✅ Admin only access
+// Admin only access
 const isAdmin = (req, res, next) => {
   if (req.user && req.user.type === 'admin') {
     next();
@@ -35,7 +35,7 @@ const isAdmin = (req, res, next) => {
   }
 };
 
-// ✅ Teacher only access
+// Teacher only access
 const isTeacher = (req, res, next) => {
   if (req.user && req.user.type === 'teacher') {
     next();
@@ -44,7 +44,7 @@ const isTeacher = (req, res, next) => {
   }
 };
 
-// ✅ Student only access
+// Student only access
 const isStudent = (req, res, next) => {
   if (req.user && req.user.type === 'student') {
     next();

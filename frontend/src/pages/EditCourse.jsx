@@ -4,7 +4,7 @@ import axios from '../services/axios';
 import TeacherNavbar from '../components/TeacherNavbar';
 
 const EditCourse = () => {
-  const { id } = useParams(); // course ID from URL
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -16,7 +16,7 @@ const EditCourse = () => {
 
   const [sections, setSections] = useState([]);
 
-  // 🔄 Load course data on mount
+  // Load course data on mount
   useEffect(() => {
     const fetchCourse = async () => {
       try {
@@ -47,7 +47,7 @@ const EditCourse = () => {
   };
 
   const removeSection = (index) => {
-    if (sections.length === 1) return; // Prevent deleting last section
+    if (sections.length === 1) return; 
     const updated = [...sections];
     updated.splice(index, 1);
     setSections(updated);

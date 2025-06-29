@@ -66,7 +66,7 @@ const CourseDetail = () => {
       <TeacherNavbar />
 
       <div className="max-w-4xl mx-auto p-6 bg-white shadow rounded mt-6 relative">
-        {/* ✏️ Edit Button */}
+        {/* Edit Button */}
         <button
           onClick={() => navigate(`/teacher/edit/${course._id}`)}
           className="absolute top-4 right-4 text-blue-600 hover:text-blue-800 font-semibold"
@@ -79,7 +79,7 @@ const CourseDetail = () => {
         <p className="text-gray-700 mb-2"><strong>Price:</strong> ₹{course.C_price}</p>
         <p className="text-gray-700 mb-4"><strong>Description:</strong> {course.C_description}</p>
 
-        {/* 👥 Enrolled Students - moved above */}
+        {/* Enrolled Students - moved above */}
         <h3 className="text-xl font-semibold text-green-700 mb-2">👥 Enrolled Students</h3>
         {course.enrolled.length === 0 ? (
           <p className="text-gray-500">No students enrolled yet.</p>
@@ -93,7 +93,7 @@ const CourseDetail = () => {
           </ul>
         )}
 
-        {/* 📂 Course Sections */}
+        {/* Course Sections */}
         <h3 className="text-xl font-semibold text-green-700 mb-2">📂 Course Sections</h3>
         {course.sections.length === 0 ? (
           <p className="text-gray-500">No sections added yet.</p>

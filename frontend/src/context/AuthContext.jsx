@@ -4,7 +4,7 @@ import axios from '../services/axios';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // user object: {name, email, type, token}
+  const [user, setUser] = useState(null); // User object: {name, email, type, token}
   const [loading, setLoading] = useState(true);
 
   // Load user from token on page refresh

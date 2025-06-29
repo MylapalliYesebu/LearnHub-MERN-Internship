@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Modal, Button } from 'react-bootstrap';
-import '../App.css'; // Ensure you have the necessary styles
+import '../App.css';
 
 const LearnCourse = () => {
   const { id } = useParams();

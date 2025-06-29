@@ -1,6 +1,6 @@
 const User = require('../models/User');
 
-// ✅ Get all users (Admin only)
+// Get all users (Admin only)
 // GET /api/users
 const getAllUsers = async (req, res) => {
   try {
@@ -11,7 +11,7 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-// ✅ Update a user's role (Admin only)
+// Update a user's role (Admin only)
 // PUT /api/users/:id
 const updateUserRole = async (req, res) => {
   try {
@@ -20,12 +20,12 @@ const updateUserRole = async (req, res) => {
 
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    // ❌ Block changing own role
+    // Block changing own role
     if (user._id.toString() === req.user._id.toString()) {
       return res.status(403).json({ message: "You can't change your own role" });
     }
 
-    // ❌ Block assigning or modifying admin roles
+    // Block assigning or modifying admin roles
     if (user.type === 'admin' || type === 'admin') {
       return res.status(403).json({ message: "You can't modify admin roles" });
     }
@@ -39,7 +39,7 @@ const updateUserRole = async (req, res) => {
   }
 };
 
-// ✅ Delete a user (Admin only)
+// Delete a user (Admin only)
 // DELETE /api/users/:id
 const deleteUser = async (req, res) => {
   try {
@@ -47,7 +47,7 @@ const deleteUser = async (req, res) => {
 
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    // ❌ Block deleting self or another admin
+    // Block deleting self or another admin
     if (user._id.toString() === req.user._id.toString()) {
       return res.status(403).json({ message: "You can't delete yourself" });
     }

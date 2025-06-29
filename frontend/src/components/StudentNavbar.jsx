@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 const StudentNavbar = () => {
   const { user, logout } = useContext(AuthContext);
   const location = useLocation();
-  const navigate = useNavigate(); // ✅ step 1
+  const navigate = useNavigate();
 
   return (
     <nav className="bg-purple-700 text-white px-6 py-4 flex justify-between items-center shadow-md">
@@ -18,7 +18,7 @@ const StudentNavbar = () => {
       <div className="flex gap-4 items-center">
         <span>Hello, {user.name}</span>
 
-        {/* ✅ Dashboard button acts like a Link */}
+        {/* Dashboard button acts like a Link */}
         <button
           onClick={() => navigate("/student/dashboard")} // ✅ step 3
           className={`px-3 py-1 rounded ${

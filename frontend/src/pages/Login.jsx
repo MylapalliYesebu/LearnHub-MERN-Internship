@@ -35,7 +35,7 @@ const Login = () => {
 
       {/* Form Container */}
       <div className="relative z-10 bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">Login to LearnHub</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">Login to LearnHub </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input

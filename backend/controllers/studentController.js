@@ -1,7 +1,7 @@
 const Course = require('../models/Course');
 const User = require('../models/User');
 
-// ✅ Enroll in a course (Student)
+// Enroll in a course (Student)
 const enrollInCourse = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);
@@ -20,7 +20,7 @@ const enrollInCourse = async (req, res) => {
   }
 };
 
-// ✅ Get all enrolled courses
+// Get all enrolled courses
 const getEnrolledCourses = async (req, res) => {
   try {
     const courses = await Course.find({ enrolled: req.user._id }).populate('C_educator', 'name email');
@@ -30,7 +30,7 @@ const getEnrolledCourses = async (req, res) => {
   }
 };
 
-// ✅ Mark a section as completed
+// Mark a section as completed
 const completeSection = async (req, res) => {
   const { courseId, sectionIndex } = req.body;
 
@@ -60,7 +60,7 @@ const completeSection = async (req, res) => {
   }
 };
 
-// ✅ Get completed section indexes for a specific course
+// Get completed section indexes for a specific course
 const getCompletedSections = async (req, res) => {
   const { courseId } = req.params;
 
@@ -76,7 +76,7 @@ const getCompletedSections = async (req, res) => {
   }
 };
 
-// ✅ Unenroll from a course
+// Unenroll from a course
 const unenrollFromCourse = async (req, res) => {
   const courseId = req.params.id;
 
@@ -90,7 +90,7 @@ const unenrollFromCourse = async (req, res) => {
     );
     await course.save();
 
-    // Optional: Remove completedSections for that course
+    // Remove completedSections for that course
     const user = await User.findById(req.user._id);
     user.completedSections = user.completedSections.filter(
       (item) => item.courseId.toString() !== courseId

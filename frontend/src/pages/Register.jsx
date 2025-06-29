@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../services/axios';
 import { AuthContext } from '../context/AuthContext';
-import registerBg from '../assets/bg.jpg'; // 🔹 Local image import
+import registerBg from '../assets/bg.jpg';
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -39,10 +39,8 @@ const Register = () => {
       className="min-h-screen bg-cover bg-center relative flex items-center justify-center"
       style={{ backgroundImage: `url(${registerBg})` }}
     >
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/50"></div>
 
-      {/* Form Container */}
       <div className="relative z-10 bg-white p-8 rounded-xl shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-green-600">Create an Account</h2>
 

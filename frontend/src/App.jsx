@@ -52,6 +52,7 @@ function App() {
         <Route path="/student/courses" element={<PrivateRoute role="student"><StudentCourses /></PrivateRoute>} />
         <Route path="/student/enrolled" element={<PrivateRoute role="student"><EnrolledCourses /></PrivateRoute>} />
         <Route path="/student/learn/:id" element={<PrivateRoute role="student"><LearnCourse /></PrivateRoute>} />
+        
       </Routes>
     </AuthProvider>
   );

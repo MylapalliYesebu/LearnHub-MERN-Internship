@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav className="bg-gray-800 text-white p-4 flex justify-between items-center shadow-md">
-      {/* Left: App Name */}
+      {/* Left: App Name*/}
       <div className="text-2xl font-bold">
         LearnHub
       </div>

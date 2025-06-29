@@ -57,7 +57,6 @@ const AddCourse = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
 
-          {/* Category Dropdown */}
           <select
             name="C_category"
             value={form.C_category}
@@ -81,7 +80,6 @@ const AddCourse = () => {
             <option value="Foundations of Computing">Foundations of Computing</option>
           </select>
 
-          {/* Basic Inputs */}
           <input
             name="C_title"
             placeholder="Course Title"
@@ -125,7 +123,7 @@ const AddCourse = () => {
                 className="w-full border rounded px-3 py-2"
               />
 
-              {/* ❌ Remove Section Button */}
+              {/* Remove Section Button */}
               {sections.length > 1 && (
                 <button
                   type="button"

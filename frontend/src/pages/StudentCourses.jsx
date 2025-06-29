@@ -40,7 +40,7 @@ const StudentCourses = () => {
     }
   };
 
-  // 🔍 Filter courses based on search
+  // Filter courses based on search
   const filteredCourses = courses.filter((course) =>
     course.C_title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     course.C_category.toLowerCase().includes(searchTerm.toLowerCase())
