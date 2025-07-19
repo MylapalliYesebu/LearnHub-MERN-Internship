@@ -11,8 +11,6 @@ LearnHub is a full-stack MERN platform that enables **Admins to manage users and
 
 📎 [View the project Documentation.pdf](https://drive.google.com/file/d/1cgyJhZtioS7VCKxvGbfQ7ewyKSwIftB3/view?usp=sharing)
 
-📎 <a href="https://drive.google.com/file/d/1cgyJhZtioS7VCKxvGbfQ7ewyKSwIftB3/view?usp=sharing" target="_blank">View the project Documentation.pdf</a>
-
 ---
 
 ## 🎬 Demo Video
